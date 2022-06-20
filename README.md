@@ -6,6 +6,6 @@ An Orchard Core Theme implementation of the [AdmiKit Free Bootstrap Template](ht
 ## The AdminKit Free features
 - Site settings of custom branding
 - Extended Custom User Settings according to template
-- Custom Menu items with icons
-- Forms ContentTypes
-  - Boostrap Card
+- [WIP] Custom Menu items with icons
+- [WIP] Forms ContentTypes
+  - [WIP] Boostrap Card
