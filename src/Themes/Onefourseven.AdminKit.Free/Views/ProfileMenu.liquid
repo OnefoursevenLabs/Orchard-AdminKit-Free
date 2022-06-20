@@ -1,0 +1,64 @@
+
+<!-- Is authenticated-->
+{% if User.Identity.IsAuthenticated %} 
+<li class="nav-item dropdown">
+    {% assign user = User | user_id | users_by_id %}
+    
+    <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+        <i class="align-middle" data-feather="settings"></i>
+    </a>
+    <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+
+        {% if user.Properties.UserProfile.UserProfile.Image.Paths != null %}
+        {% assign img_url = user.Properties.UserProfile.UserProfile.Image.Paths[0] | asset_url %}
+        <img src="{{ img_url }}" class="avatar img-fluid rounded me-1" alt="avatar" />
+        {% else %}            
+        <img src="{{'~/Onefourseven.AdminKit.Free/img/avatars/noavatar.png' | href}}" class="avatar img-fluid rounded me-1" alt="avatar" />
+        {% endif%}
+        {% if user.Properties.UserProfile.UserProfile.FirstName != null and user.Properties.UserProfile.UserProfile.FirstName.Text != "" %}
+        <span class="text-dark">{{ user.Properties.UserProfile.UserProfile.FirstName.Text }} {{ user.Properties.UserProfile.UserProfile.LastName.Text }}</span>
+        {% elsif user.Properties.UserProfile.UserProfile.LastName != null and user.Properties.UserProfile.UserProfile.LastName.Text != "" %}
+        <span class="text-dark">{{ user.Properties.UserProfile.UserProfile.FirstName.Text }} {{ user.Properties.UserProfile.UserProfile.LastName.Text }}</span>
+          
+        {% else %}        
+        <span class="text-dark">{{ user.UserName }} </span>
+        {% endif %}
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item disabled" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+        <a class="dropdown-item disabled" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+        <div class="dropdown-divider"></div>
+
+        {% assign  user_perm = User | has_claim:"Permission", "AccessAdminPanel" %}
+        {% if user_perm %}
+            {% a  action:"Index", controller: "Admin", area: "OrchardCore.Admin", class: "dropdown-item" %}
+            <i class="align-middle me-1" data-feather="settings"></i> {{"Admin Dashboard" | t}}
+            {% enda %}
+        {% endif %}
+        <!-- Change email if allowed -->        
+        {% shape "ChangeEmailMenuItem", alias: "alias:change-email-menu-item"%}
+        <!-- Change Pass-->        
+        {% a  action:"ChangePassword", controller: "Account", area: "OrchardCore.Users", class: "dropdown-item", route_returnUrl: FullRequestPath %}
+        <i class="align-middle me-1" data-feather="key"></i> {{"Change Password" | t}}
+        {% enda %}
+        <!-- List External Logins -->
+        {% shape "ExternalLoginMenuItem", alias: "alias:external-login-menu-item" %}
+
+
+        <a class="dropdown-item disabled" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+        <div class="dropdown-divider"></div>
+            {% form action:"LogOff", controller: "Account", area: "OrchardCore.Users", method: "post" %}            
+                <button type="submit" class="dropdown-item"><i class="align-middle me-1" data-feather="help-circle"></i> {{"Log off" | t}}</button>
+            {% endform %}
+        </div>
+    </li>
+{% else %}
+ <li class="nav-item"> 
+            {% a  action:"Login", controller: "Account", area: "OrchardCore.Users", class: "nav-link" %}
+            <i class="align-middle me-1" data-feather="log-in"></i> {{"Log in" | t}}
+            {% enda %}
+ </li>
+{% endif %}
+<!-- Is NOT authenticated-->
+

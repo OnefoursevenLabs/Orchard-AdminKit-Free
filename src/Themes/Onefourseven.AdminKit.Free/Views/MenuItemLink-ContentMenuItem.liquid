@@ -1,0 +1,5 @@
+{% assign contentMenuItem = Model.ContentItem.Content.ContentMenuItemPart %}
+<a class="sidebar-link" href="{{ contentMenuItem.SelectedContentItem.ContentItemIds.first | display_url }}">
+	<i class="align-middle" data-feather="circle"></i> 
+	<span class="align-middle">{{ Model.ContentItem.DisplayText }}</span>
+</a>

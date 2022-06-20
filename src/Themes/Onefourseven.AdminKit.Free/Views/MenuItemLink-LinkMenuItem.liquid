@@ -1,0 +1,5 @@
+﻿{% assign link = Model.ContentItem.Content.LinkMenuItemPart %}
+<a  class="sidebar-link" href="{{ link.Url | href }}">
+    <i class="align-middle" data-feather="sliders"></i> 
+    <span class="align-middle">{{ link.Name }}</span>
+</a>

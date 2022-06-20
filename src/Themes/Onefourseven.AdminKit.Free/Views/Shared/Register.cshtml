@@ -1,0 +1,37 @@
+@model OrchardCore.Users.ViewModels.RegisterViewModel
+
+@{ 
+    ThemeLayout.Metadata.Alternates.Add("Layout__Login");
+}
+
+<h3>@T["Register"]</h3>
+<form asp-controller="Registration" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <h4>@T["Create a new account."]</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label class="form-label">@T["Username"]</label>
+        <input asp-for="UserName" class="form-control form-control-lg" tabindex="1" placeholder="@T["Username"]" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@T["Email"]</label>
+        <input asp-for="Email" class="form-control form-control-lg" tabindex="2" placeholder="@T["Email"]" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@T["Password"]</label>
+        <input asp-for="Password" class="form-control form-control-lg" tabindex="3" placeholder="@T["Password"]" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">@T["Confirm password"]</label>
+        <input asp-for="ConfirmPassword" class="form-control form-control-lg" tabindex="4" placeholder="@T["Confirm password"]" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    @await RenderSectionAsync("AfterRegister", required: false)
+    
+    <div class="text-center mt-3">
+    <button type="submit" class="btn btn-lg btn-primary">@T["Register"]</button>
+    </div>
+</form>

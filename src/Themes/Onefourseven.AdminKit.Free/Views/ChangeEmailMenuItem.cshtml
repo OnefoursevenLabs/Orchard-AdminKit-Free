@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OrchardCore.Entities
+@using OrchardCore.Settings
+@using OrchardCore.Users
+@using OrchardCore.Users.Models
+@inject ISiteService SiteService
+@inject SignInManager<IUser> SignInManager
+
+@{
+    var allowChangeEmail = (await SiteService.GetSiteSettingsAsync()).As<ChangeEmailSettings>().AllowChangeEmail;
+}
+
+@if (allowChangeEmail) {
+    <a class="dropdown-item" asp-route-area="OrchardCore.Users" asp-controller="ChangeEmail" asp-action="Index">
+        <i class="align-middle me-1" data-feather="at-sign"></i>@T["Change Email"]
+    </a>
+}

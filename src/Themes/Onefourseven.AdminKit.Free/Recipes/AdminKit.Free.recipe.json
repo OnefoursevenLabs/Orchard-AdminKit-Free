@@ -1,0 +1,355 @@
+{
+  "name": "AdminKit Free",
+  "displayName": "AdminKit Free",
+  "description": "AdminKit Free Theme, based on Boostrap AdminKit Free template",
+  "author": "Onefourseven Labs",
+  "website": "https://gumroad.com/a/832035955",
+  "version": "0.0.1",
+  "issetuprecipe": true,
+  "categories": [ "default" ],
+  "tags": [ "admin panel" ],
+  "steps": [
+    {
+      "name": "Feature",
+      "enable": [
+        "Application.Default",
+        "Onefourseven.Erp.Web",
+        "OrchardCore.Liquid",
+        "OrchardCore.Settings",
+        "OrchardCore.Contents",
+        "OrchardCore.Admin",
+        "OrchardCore.ContentTypes",
+        "OrchardCore.AdminMenu",
+        "OrchardCore.Alias",
+        "OrchardCore.Autoroute",
+        "OrchardCore.Resources",
+        "OrchardCore.Features",
+        "OrchardCore.Scripting",
+        "OrchardCore.Recipes",
+        "OrchardCore.Shortcodes",
+        "OrchardCore.ContentFields",
+        "OrchardCore.Users",
+        "OrchardCore.Localization",
+        "OrchardCore.ContentPreview",
+        "OrchardCore.Deployment",
+        "OrchardCore.CustomSettings",
+        "OrchardCore.Diagnostics",
+        "OrchardCore.DynamicCache",
+        "OrchardCore.Email",
+        "OrchardCore.Widgets",
+        "OrchardCore.Flows",
+        "OrchardCore.Forms",
+        "OrchardCore.HomeRoute",
+        "OrchardCore.Html",
+        "OrchardCore.Markdown",
+        "OrchardCore.Media",
+        "OrchardCore.Media.Cache",
+        "OrchardCore.Title",
+        "OrchardCore.Microsoft.Authentication.AzureAD",
+        "OrchardCore.Navigation",
+        "OrchardCore.Roles",
+        "OrchardCore.Tenants",
+        "OrchardCore.Themes",
+        "OrchardCore.Users.ChangeEmail",
+        "OrchardCore.Users.CustomUserSettings",
+        "OrchardCore.Users.Registration",
+        "OrchardCore.Users.ResetPassword",
+        "Onefourseven.AdminKit.Free",
+        "SafeMode",
+        "TheAdmin",
+        "TheTheme"
+      ]
+    },
+    {
+      "name": "Settings",
+      "AdminSettings": {
+        "DisplayDarkMode": true,
+        "DisplayMenuFilter": false,
+        "DisplayNewMenu": false,
+        "DisplayTitlesInTopbar": false
+      },
+      "LoginSettings": {
+        "UseSiteTheme": true,
+        "UseExternalProviderIfOnlyOneDefined": false,
+        "DisableLocalLogin": false,
+        "UseScriptToSyncRoles": false,
+        "SyncRolesScript": "/* Uncomment to map AzureAD\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.externalClaims.forEach(claim => {\r\n            if (claim.Type === \"http://schemas.microsoft.com/ws/2008/06/identity/claims/role\") {\r\n                switch (claim.Value) {\r\n                    case \"Writer\":\r\n                        context.rolesToAdd.push(\"Author\");\r\n                        break;\r\n                    case \"Admin\":\r\n                        context.rolesToAdd.push(\"Administrator\");\r\n                        break;\r\n                    default:\r\n                        log(\"Warning\", \"Role \" + claim.Value + \" was not handled\");\r\n                        break;\r\n                }\r\n            }\r\n        });\r\n    default:\r\n        log(\"Warning\", \"Provider \" + loginProvider + \" was not handled\");\r\n        break;\r\n}\r\n*/\r\n"
+      },
+      "RegistrationSettings": {
+        "UsersCanRegister": 0,
+        "UsersMustValidateEmail": false,
+        "UsersAreModerated": false,
+        "UseSiteTheme": true,
+        "NoPasswordForExternalUsers": false,
+        "NoUsernameForExternalUsers": false,
+        "NoEmailForExternalUsers": false,
+        "UseScriptToGenerateUsername": true,
+        "GenerateUsernameScript": "/* Uncomment to map AzureAD\r\n// Uncomment to output the context variable in the logs\r\n// log(\"warning\", JSON.stringify(context));\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.userName = \"azad\" + uuid();\r\n        break;\r\n    default:\r\n        log(\"Warning\", \"Provider \" + context.loginProvider + \" was not handled\");\r\n        // Uncomment to generate a username as a uuid\r\n        // context.userName = \"u\" + uuid();\r\n        break;\r\n}\r\n*/\r\n"
+      },
+      "ResetPasswordSettings": {
+        "AllowResetPassword": true,
+        "UseSiteTheme": false
+      }
+    },
+    {
+      "name": "Themes",
+      "Site": "Onefourseven.AdminKit.Free",
+      "Admin": "TheAdmin"
+    },
+    {
+      "name": "custom-settings",
+      "CompanyBrand": {
+        "ContentItemId": "45f3ndzqywwr9vxejqex362mcb",
+        "ContentItemVersionId": null,
+        "ContentType": "CompanyBrand",
+        "DisplayText": "Hypervisor",
+        "Latest": false,
+        "Published": false,
+        "ModifiedUtc": null,
+        "PublishedUtc": null,
+        "CreatedUtc": null,
+        "Owner": "",
+        "Author": "admin",
+        "CompanyBrand": {
+          "Name": {
+            "Text": "Hypervisor"
+          },
+          "Logo": {
+            "Paths": [
+              "logo.png"
+            ],
+            "MediaTexts": [
+              ""
+            ]
+          },
+          "Favicon": {
+            "Paths": [
+              "cropped-icon-192x192.png"
+            ],
+            "MediaTexts": [
+              ""
+            ]
+          },
+          "SmallLogo": {
+            "Paths": [
+              "logo.png"
+            ],
+            "MediaTexts": [
+              ""
+            ]
+          },
+          "LoginLogo": {
+            "Paths": [
+              "cropped-icon-192x192.png"
+            ],
+            "MediaTexts": [
+              ""
+            ]
+          }
+        },
+        "TitlePart": {
+          "Title": "Hypervisor"
+        }
+      }
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "UserProfile",
+          "DisplayName": "UserProfile",
+          "Settings": {
+            "ContentTypeSettings": {
+              "Stereotype": "CustomUserSettings"
+            },
+            "FullTextAspectSettings": {}
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "UserProfile",
+              "Name": "UserProfile",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CompanyBrand",
+          "DisplayName": "Company Brand",
+          "Settings": {
+            "ContentTypeSettings": {
+              "Stereotype": "CustomSettings"
+            },
+            "FullTextAspectSettings": {}
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "CompanyBrand",
+              "Name": "CompanyBrand",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "ContentParts": [
+        {
+          "Name": "UserProfile",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "TextField",
+              "Name": "FirstName",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "First Name",
+                  "Position": "0"
+                }
+              }
+            },
+            {
+              "FieldName": "TextField",
+              "Name": "LastName",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Last Name",
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "FieldName": "MediaField",
+              "Name": "Image",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Image",
+                  "Position": "2"
+                },
+                "ContentIndexSettings": {},
+                "MediaFieldSettings": {
+                  "Multiple": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CompanyBrand",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "TextField",
+              "Name": "Name",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Name",
+                  "Position": "0"
+                }
+              }
+            },
+            {
+              "FieldName": "MediaField",
+              "Name": "Logo",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Logo",
+                  "Position": "3"
+                }
+              }
+            },
+            {
+              "FieldName": "MediaField",
+              "Name": "Favicon",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Favicon",
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "FieldName": "MediaField",
+              "Name": "SmallLogo",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "SmallLogo",
+                  "Position": "4"
+                }
+              }
+            },
+            {
+              "FieldName": "MediaField",
+              "Name": "LoginLogo",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "LoginLogo",
+                  "Position": "2"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MediaProfiles",
+      "MediaProfiles": {
+        "medium": {
+          "Hint": "A medium image (600px x 480px)",
+          "Width": 600,
+          "Height": 480,
+          "Mode": 0,
+          "Format": 0,
+          "Quality": 100,
+          "BackgroundColor": null
+        },
+        "small": {
+          "Hint": "A small image (240px x 240px)",
+          "Width": 240,
+          "Height": 240,
+          "Mode": 0,
+          "Format": 0,
+          "Quality": 100,
+          "BackgroundColor": null
+        },
+        "extrasmall": {
+          "Hint": "A extra small image (160px x 160px)",
+          "Width": 160,
+          "Height": 160,
+          "Mode": 0,
+          "Format": 0,
+          "Quality": 100,
+          "BackgroundColor": null
+        }
+      }
+    },
+    {
+      "name": "media",
+      "Files": [
+        {
+          "SourcePath": "cropped-icon-192x192.png",
+          "TargetPath": "cropped-icon-192x192.png"
+        },
+        {
+          "SourcePath": "logo.png",
+          "TargetPath": "logo.png"
+        }
+      ]
+    }
+  ]
+}

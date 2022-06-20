@@ -1,0 +1,28 @@
+﻿<div class="{{ Model.Classes | join: ' ' }}">
+    <div class="card">
+        {% if Model.Header != null or Model.Meta != null %}        
+        <div class="widget-header card-header">
+            <div class="card-title">
+                {{ Model.ContentItem | display_text }}
+                {% comment %}
+                {{ Model.Header | shape_render }}
+                {% endcomment %}
+            </div>
+            {% if Model.Meta != null %}            
+                <div class="widget-metadata">
+                    {{ Model.Meta | shape_render }}
+                </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="widget-body card-body">
+            {{ Model.Content | shape_render }}
+        </div>
+        {% if Model.Footer != null %}
+        <div class="widget-footer card-footer">
+            {{ Model.Footer | shape_render }}
+        </div>
+        {% endif%}
+    </div>
+</div>
+

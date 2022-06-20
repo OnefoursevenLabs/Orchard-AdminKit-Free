@@ -1,0 +1,7 @@
+﻿ <li class="sidebar-header">
+    {{Model.ContentItem.DisplayText}}
+</li>
+
+{% for item in Model.Items %}
+    {{ item | shape_render }}
+{% endfor %}

@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OrchardCore.Entities
+@using OrchardCore.Settings
+@using OrchardCore.Users
+@using OrchardCore.Users.Models
+@inject ISiteService SiteService
+@inject SignInManager<IUser> SignInManager
+
+@{
+    var externalAuthenticationSchemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
+}
+@if (externalAuthenticationSchemes.Count() > 0) {
+    <a class="dropdown-item" asp-route-area="OrchardCore.Users" asp-controller="Account" asp-action="ExternalLogins">
+        <i class="align-middle me-1" data-feather="lock"></i>@T["External Logins"]
+    </a>
+}
